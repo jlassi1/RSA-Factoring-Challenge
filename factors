@@ -10,12 +10,19 @@ def sum_digits(n):
     return r
 
 
+def is_prime(n):
+    if n % 2 == 0 and n > 2:
+        return False
+    return all(n % i for i in range(3, int(math.sqrt(n)) + 1, 2))
+
+
 f = open(argv[1], 'r')
 line = f.readlines()
 
 for num in line:
     n = int(num)
-
+    if is_prime(n):
+        print("{}={}*1".format(n, n))
     if int(repr(n)[-1]) % 2 == 0:
         print("{}={}*2".format(n, n // 2))
     elif int(repr(n)[-1]) == 0 or int(repr(n)[-1]) == 5:
@@ -26,5 +33,5 @@ for num in line:
     else:
         for y in range(7, n // 2, 2):
             if (n % y == 0):
-                print("{}={}*{}".format(n, n // y, y))
+                print("{}={}*{}".format(n, n // y + 1, y))
                 break
