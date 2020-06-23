@@ -11,9 +11,7 @@ def sum_digits(n):
 
 
 def is_prime(n):
-    if n % 2 == 0 and n > 2:
-        return False
-    return all(n % i for i in range(3, int(math.sqrt(n)) + 1, 2))
+    return all(n % j for j in xrange(2, int(n ** 0.5) + 1)) and n > 1
 
 
 f = open(argv[1], 'r')
