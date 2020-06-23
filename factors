@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+from sys import argv
+import math
+
+
+def sum_digits(n):
+    r = 0
+    while n:
+        r, n = r + n % 10, n // 10
+    return r
+
+
+f = open(argv[1], 'r')
+line = f.readlines()
+
+for num in line:
+    n = int(num)
+
+    if int(repr(n)[-1]) % 2 == 0:
+        print("{}={}*2".format(n, n // 2))
+    elif int(repr(n)[-1]) == 0 or int(repr(n)[-1]) == 5:
+        print("{}={}*5".format(n, n // 5))
+    elif sum_digits(n) % 3 == 0:
+        print("{}={}*3".format(n, n // 3))
+
+    else:
+        for y in range(7, n // 2, 2):
+            if (n % y == 0):
+                print("{}={}*{}".format(n, n // y, y))
+                break
